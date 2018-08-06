@@ -1,0 +1,21 @@
+CARTILHA DE BOAS PRATICAS PARA PEGAR O VERSIONAMENTO COM CODIGO DE BUG
+
+1 - Resolver os bugs na banch criada para resolver os bugs.
+
+2 - Testar, commitar e etc.
+
+3 - git checkout master
+
+4 - git pull
+
+5 - git checkout bug
+
+6 - git checkout/rebase master
+
+7 - Resolver conflitos na bug e testar.
+
+8 - git checkout master
+
+9 - git merge bug
+
+10 - git push
