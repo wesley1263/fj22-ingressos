@@ -150,5 +150,13 @@
             </plugin>
         </plugins>
     </build>
+    
+    <developers>
+    	<developer>
+    		<name>Weslei Souza</name>
+    		<email>weslei@andwes.com.br</email>
+    	</developer>
+    	
+    </developers>
 
 </project>
