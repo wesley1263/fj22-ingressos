@@ -16,25 +16,36 @@
             <input type="hidden" name="salaId" value="${form.salaId}">
 
             <div class="form-group">
-                <label for="horario">Horario:</label>
-                <input id="horario" type="text" name="horario" class="form-control" value="${form.horario}">
+                <label for="horario" class="control-label col-sm-2">Horario:</label>
+                <div class="col-sm-6">
+                <input id="horario" type="time" name="horario" class="form-control" value="${form.horario}">
+                </div>
                 <c:forEach items="${bindingResult.getFieldErrors('horario')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>
                 </c:forEach>
 
             </div>
-
+			
+			<div class="form-group">
+			    <label class="control-label col-sm-2" for="email">Email:</label>
+			    <div class="col-sm-10">
+			      <p class="form-control-static">someone@example.com</p>
+			    </div>
+			  </div>
+			
             <div class="form-group">
-                <label for="filme">Filme:</label>
-                <select id="filme" name="filmeId" class="form-control">
-                    <option value="">Selecione um Filme</option>
-                    <c:forEach var="filme" items="${filmes}">
-                        <option value="${filme.id}" ${filme.id.equals(form.filmeId)? "selected": ""}>${filme.nome}</option>
-                    </c:forEach>
-                </select>
-                <c:forEach items="${bindingResult.getFieldErrors('filmeId')}" var="error">
-                    <span class="text-danger">${error.defaultMessage}</span>
-                </c:forEach>
+                <label for="filme" class="control-label col-sm-4">Filme:</label>
+                <div class="col-sm-8">
+	                <select id="filme" name="filmeId" class="form-control">
+	                    <option value="">Selecione um Filme</option>
+	                    <c:forEach var="filme" items="${filmes}">
+	                        <option value="${filme.id}" ${filme.id.equals(form.filmeId)? "selected": ""}>${filme.nome}</option>
+	                    </c:forEach>
+	                </select>
+	                <c:forEach items="${bindingResult.getFieldErrors('filmeId')}" var="error">
+	                    <span class="text-danger">${error.defaultMessage}</span>
+	                </c:forEach>
+                </div>
             </div>
 
 
