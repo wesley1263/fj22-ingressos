@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib tagdir="/WEB-INF/tags/" prefix="ingresso" %>
@@ -9,13 +9,15 @@
 		<div class=" col-md-6 col-md-offset-3">
         <h3>Sessões na sala: ${sala.nome}</h3>
 
+		<a href="/admin/salas" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+		<hr>
         <table class="table table-hover ">
             <thead>
             <tr>
                 <th>Horário</th>
                 <th>Filme</th>
                 <th>Duração</th>
- <!--                 <th>Preço</th> -->
+                 <th>Preço</th>
 
                 <th colspan="2" class="text-center">Ações</th>
             </tr>
@@ -26,7 +28,7 @@
                     <td>${sessao.horario}</td>
                     <td>${sessao.filme.nome}</td>
                     <td>${sessao.filme.duracao.toMinutes()}</td>
-<%--                     <td>${sessao.preco}</td> --%>
+                    <td>${sessao.preco}</td>
 
                     <td>
                         <a onclick="excluir(${sessao.id})" class="btn btn-danger">Excluir</a>

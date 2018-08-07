@@ -12,6 +12,7 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
+					<th>Preço</th>
 					<th>Duração</th>
 					<!-- <th>Preço</th> -->
 					<th colspan="2" class="text-center">Ações</th>
@@ -21,6 +22,7 @@
 				<c:forEach var="filme" items="${filmes}">
 					<tr>
 						<td>${filme.nome}</td>
+						<td>${filme.preco}</td>
 						<td>${filme.duracao.toMinutes()}</td>
 				<%--		<td>${filme.preco}</td>			--%>			
 						<td>

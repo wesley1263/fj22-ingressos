@@ -21,6 +21,7 @@ import br.com.caelum.ingresso.model.Filme;
 import br.com.caelum.ingresso.model.Sala;
 import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.form.SessaoForm;
+import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
 
 @Controller
 public class SessaoController {
@@ -28,7 +29,7 @@ public class SessaoController {
 	@Autowired
 	private FilmeDao filme;
 	@Autowired
-	private SalaDao sala;
+	private SalaDao salaDao;
 	
 	@Autowired
 	private SessaoDao session;
@@ -46,7 +47,7 @@ public class SessaoController {
 		mav.addObject("form",sessaoForm);
 		mav.addObject("filmes",filmes);	
 		
-		mav.addObject("sala",sala.findOne(salaId));
+		mav.addObject("sala",salaDao.findOne(salaId));
 		
 		return mav;
 	}
@@ -56,15 +57,25 @@ public class SessaoController {
 	@PostMapping("admin/sessao")
 	public ModelAndView salvar(@Valid SessaoForm form, BindingResult result){
 		
+		Integer salaId = form.getSalaId();
+		
 		if(result.hasErrors()){
-			return formulario(form.getSalaId(),form);
+			return formulario(salaId,form);
 		}
 		
-		 Sessao sessao = form.toSessao(filme, sala);
+		 Sessao sessao = form.toSessao(filme, salaDao);
 		 
-		 session.save(sessao);
+		 Sala s = salaDao.findOne(salaId);
 		 
-		return new ModelAndView(String.format("redirect:/admin/sala/%d/sessoes/", form.getSalaId()));
+		 GerenciadorDeSessao  valida = new GerenciadorDeSessao(session.findAllBySala(s));
+		 
+		 if(valida.cabe(sessao)){
+			 session.save(sessao);
+			 return new ModelAndView(String.format("redirect:/admin/sala/%d/sessoes/", form.getSalaId()));
+		 }
+		 
+		 
+		 return formulario(salaId, form);
 	}
 	
 	

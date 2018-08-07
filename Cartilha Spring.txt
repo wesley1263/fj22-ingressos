@@ -18,4 +18,10 @@ CARTILHA DE BOAS PRATICAS PARA PEGAR O VERSIONAMENTO COM CODIGO DE BUG
 
 9 - git merge bug
 
-10 - git push
+
+EXECUTANDO TESTE DE CLASSES E PACOTES
+
+
+1 - Criar a simulação
+2 - Execuar a lógica
+3 - Verificar o resultar

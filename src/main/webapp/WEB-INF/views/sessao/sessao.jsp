@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label for="horario" class="control-label col-sm-2">Horario:</label>
                 <div class="col-sm-6">
-                <input id="horario" type="time" name="horario" class="form-control" value="${form.horario}">
+                <input id="horario" type="text" name="horario" class="form-control" value="${form.horario}">
                 </div>
                 <c:forEach items="${bindingResult.getFieldErrors('horario')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>

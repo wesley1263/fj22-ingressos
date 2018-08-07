@@ -8,7 +8,11 @@
     <jsp:body>
 		<div class=" col-md-6 col-md-offset-3">
         <c:set var="bindingResult" value="${requestScope['org.springframework.validation.BindingResult.filme']}"/>
-
+		
+		<a href="/admin/salas" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+		<br>
+		<br>
+		
         <form action='/admin/filme' method="post">
             <input type="hidden" name="id" value="${filme.id}">
 
@@ -16,6 +20,14 @@
                 <label for="nome">Nome:</label>
                 <input id="nome" type="text" name="nome" class="form-control" value="${filme.nome}">
                 <c:forEach items="${bindingResult.getFieldErrors('nome')}" var="error">
+                    <span class="text-danger">${error.defaultMessage}</span>
+                </c:forEach>
+            </div>
+            
+            <div class="form-group">
+                <label for="nome">Preço:</label>
+                <input id="nome" type="text" name="preco" class="form-control" value="${filme.preco}">
+                <c:forEach items="${bindingResult.getFieldErrors('preco')}" var="error">
                     <span class="text-danger">${error.defaultMessage}</span>
                 </c:forEach>
             </div>

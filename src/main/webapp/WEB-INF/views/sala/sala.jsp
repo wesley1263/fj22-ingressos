@@ -6,9 +6,14 @@
 
 <ingresso:template>
     <jsp:body>
+    
 		<div class=" col-md-6 col-md-offset-3">
         <c:set var="bindingResult" value="${requestScope['org.springframework.validation.BindingResult.sala']}"/>
-
+		<h1 class="text-center">Criar nova sala	</h1>
+	    <hr>
+	    <a href="/admin/salas" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+		<br>
+		<br>
         <form action='/admin/sala' method="post">
             <div class="form-group">
                 <input type="hidden" name="id" value="${sala.id}">
@@ -23,14 +28,14 @@
             </div>
 
          
-<!--              <div class="form-group"> -->
-<!--                 <label for="preco">Preço:</label> -->
-<!--                 <input id="preco" type="text" name="preco" -->
-<%-- 						class="form-control" value="${sala.preco}" /> --%>
-<%--                 <c:forEach items="${bindingResult.getFieldErrors('preco')}" var="error"> --%>
-<%-- 					<span class="text-danger">${error.defaultMessage}</span> --%>
-<%-- 				</c:forEach> --%>
-<!--             </div> -->
+             <div class="form-group">
+                <label for="preco">Preço:</label>
+                <input id="preco" type="text" name="preco" class="form-control" value="${sala.preco}" />
+                <c:forEach items="${bindingResult.getFieldErrors('preco')}" var="error">
+					<span class="text-danger">${error.defaultMessage}</span>
+				</c:forEach>
+            </div>
+            
             <button type="submit" class="btn btn-primary">Gravar</button>
         </form>
         </div>
