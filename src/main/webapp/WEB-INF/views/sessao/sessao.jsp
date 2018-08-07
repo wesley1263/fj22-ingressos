@@ -10,8 +10,10 @@
         <c:set var="bindingResult" value="${requestScope['org.springframework.validation.BindingResult.sessaoForm']}"/>
 
         <h3>Nova sessão para sala: ${sala.nome}</h3>
+        
+        <a href="/admin/sala/${ sala.id }/sessoes/" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
 
-        <form action='/admin/sessao' method="post">
+        <form action='/admin/sessao' method="post" class="form-horizontal">
             <input type="hidden" name="id" value="${form.id}">
             <input type="hidden" name="salaId" value="${form.salaId}">
 
@@ -26,16 +28,11 @@
 
             </div>
 			
-			<div class="form-group">
-			    <label class="control-label col-sm-2" for="email">Email:</label>
-			    <div class="col-sm-10">
-			      <p class="form-control-static">someone@example.com</p>
-			    </div>
-			  </div>
+			
 			
             <div class="form-group">
-                <label for="filme" class="control-label col-sm-4">Filme:</label>
-                <div class="col-sm-8">
+                <label for="filme" class="control-label col-sm-2">Filme:</label>
+                <div class="col-sm-6">
 	                <select id="filme" name="filmeId" class="form-control">
 	                    <option value="">Selecione um Filme</option>
 	                    <c:forEach var="filme" items="${filmes}">
@@ -47,9 +44,12 @@
 	                </c:forEach>
                 </div>
             </div>
-
-
-            <button type="submit" class="btn btn-primary">Gravar</button>
+<hr>
+			<div class="form-group">
+				<div class="col-sm-12" align="center">
+            		<button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-floppy-disk"></i> Gravar Sessão</button>
+            	</div>
+            </div>
         </form>
         </div>
     </jsp:body>
