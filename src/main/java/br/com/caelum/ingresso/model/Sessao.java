@@ -63,6 +63,7 @@ public class Sessao {
 	public LocalTime getHorario() {
 		return Horario;
 	}
+	
 	public void setHorario(LocalTime horario) {
 		Horario = horario;
 	}
