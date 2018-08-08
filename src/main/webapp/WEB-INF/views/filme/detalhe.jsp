@@ -14,6 +14,10 @@
 
 <ingresso:template>
     <jsp:body>
+    <div class="container pull-left">
+    	<a href="/filme/em-cartaz" class="btn btn-success btn-lg"><i class="glyphicon glyphicon-arrow-left"></i> Voltar</a>
+  	 </div>
+    
 		<div class=" col-md-6 col-md-offset-3">
 	        <h1>${detalhes.titulo}</h1>
 	        <image src="${detalhes.imagem}" />

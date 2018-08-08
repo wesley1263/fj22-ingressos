@@ -99,7 +99,6 @@ public class FilmeController {
     	
     	mav.addObject("filmes",filmes);
     	
-    	
     	return mav;
     }
     
@@ -113,14 +112,13 @@ public class FilmeController {
     	
     	List<Sessao> sessoes = sessaoDao.findAllByFilme(filme);
     	
-    	Optional<DetalhesDoFilme> detalhes = imdbClient.request(filme);
+    	Optional<DetalhesDoFilme> detalhes = imdbClient.request(filme,DetalhesDoFilme.class);
     	
     	mav.addObject("sessoes",sessoes);
     	mav.addObject("filme",filme);
     	mav.addObject("detalhes",detalhes.orElse(new DetalhesDoFilme()));
     	
     	return mav;
-    	
     }
 
 }

@@ -11,13 +11,13 @@ import br.com.caelum.ingresso.model.Filme;
 @Component
 public class ImdbClient {
 
-	public Optional<DetalhesDoFilme> request(Filme filme){
+	public <T>Optional<T> request(Filme filme, Class<T> classe){
 		RestTemplate restTemplate = new RestTemplate();
     	
 		String url = String.format("http://imdb-fj22.herokuapp.com/imdb?title=%s", filme.getNome());
 		
 		try {
-			DetalhesDoFilme detalhes =  restTemplate.getForObject(url , DetalhesDoFilme.class);
+			T detalhes =  restTemplate.getForObject(url , classe);
 			return Optional.of(detalhes);
 		} catch (Exception e) {
 			return Optional.empty();

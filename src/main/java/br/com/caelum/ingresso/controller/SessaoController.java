@@ -1,6 +1,7 @@
 package br.com.caelum.ingresso.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,9 +19,11 @@ import br.com.caelum.ingresso.dao.FilmeDao;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
 import br.com.caelum.ingresso.model.Filme;
+import br.com.caelum.ingresso.model.ImagemCapa;
 import br.com.caelum.ingresso.model.Sala;
 import br.com.caelum.ingresso.model.Sessao;
 import br.com.caelum.ingresso.model.form.SessaoForm;
+import br.com.caelum.ingresso.service.ImdbClient;
 import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
 
 @Controller
@@ -33,6 +36,9 @@ public class SessaoController {
 	
 	@Autowired
 	private SessaoDao session;
+	
+	@Autowired
+	ImdbClient imdbClient;
 	
 	@GetMapping("admin/sessao")
 	public ModelAndView formulario(@RequestParam("salaId") Integer salaId, SessaoForm sessaoForm){
@@ -78,17 +84,19 @@ public class SessaoController {
 		 return formulario(salaId, form);
 	}
 	
+	@GetMapping("/sessao/{id}/lugares")
+	public ModelAndView listaLugares(@PathVariable("id") Integer id){
+		ModelAndView mav = new ModelAndView("sessao/lugares");
+		
+		Sessao sessao = session.findOne(id);
+		
+		Optional<ImagemCapa> imagem =  imdbClient.request(sessao.getFilme(), ImagemCapa.class);
+		
+		mav.addObject("sessao",sessao);
+		mav.addObject("imagemCapa",imagem.orElse(new ImagemCapa()));
+		
+		return mav;
+	}
 	
-//	@GetMapping("admin/sala/{id}/sessoes")
-//	public ModelAndView listaSessao(@PathVariable("id") Integer id){
-//		
-//		Sala s = sala.findOne(id);
-//		ModelAndView mav = new ModelAndView("sessao/lista");
-//		
-//		mav.addObject("sessoes",session.findAllBySala(s));
-//		mav.addObject("sala",s);
-//		
-//		return mav;
-//	}
 
 }

@@ -35,6 +35,11 @@ public class SessaoDao {
 		q.setParameter("filme", filme);
 		return q.getResultList();
 	}
+
+	public Sessao findOne(Integer id) {
+		
+		return manager.find(Sessao.class, id);
+	}
 	
 	
 }
