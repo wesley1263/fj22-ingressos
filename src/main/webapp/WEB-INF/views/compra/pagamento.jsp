@@ -72,12 +72,18 @@
                     <label for="cvv">CVV:</label>
                     <input id="cvv" type="text" name="cvv" class="form-control">
                 </div>
+                
+                <div class="col-md-4">
+                    <label for="validade">Validade:</label>
+                    <input id="validade" type="text" name="validade" class="form-control">
+                    <form:errors path="cartao.validade" cssStyle="color:red"/>
+                </div>
             </div>
 
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Comprar</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Comprar</button>
                 </div>
             </div>
 

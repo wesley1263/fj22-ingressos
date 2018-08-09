@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.caelum.ingresso.dao.FilmeDao;
 import br.com.caelum.ingresso.dao.SalaDao;
 import br.com.caelum.ingresso.dao.SessaoDao;
+import br.com.caelum.ingresso.model.Carrinho;
 import br.com.caelum.ingresso.model.Filme;
 import br.com.caelum.ingresso.model.ImagemCapa;
 import br.com.caelum.ingresso.model.Sala;
 import br.com.caelum.ingresso.model.Sessao;
+import br.com.caelum.ingresso.model.TipoDeIngresso;
 import br.com.caelum.ingresso.model.form.SessaoForm;
 import br.com.caelum.ingresso.service.ImdbClient;
 import br.com.caelum.ingresso.validacao.GerenciadorDeSessao;
@@ -39,6 +41,9 @@ public class SessaoController {
 	
 	@Autowired
 	ImdbClient imdbClient;
+	
+	@Autowired
+	private Carrinho carrinho;
 	
 	@GetMapping("admin/sessao")
 	public ModelAndView formulario(@RequestParam("salaId") Integer salaId, SessaoForm sessaoForm){
@@ -84,6 +89,7 @@ public class SessaoController {
 		 return formulario(salaId, form);
 	}
 	
+	
 	@GetMapping("/sessao/{id}/lugares")
 	public ModelAndView listaLugares(@PathVariable("id") Integer id){
 		ModelAndView mav = new ModelAndView("sessao/lugares");
@@ -93,7 +99,9 @@ public class SessaoController {
 		Optional<ImagemCapa> imagem =  imdbClient.request(sessao.getFilme(), ImagemCapa.class);
 		
 		mav.addObject("sessao",sessao);
+		mav.addObject("carrinho",carrinho);
 		mav.addObject("imagemCapa",imagem.orElse(new ImagemCapa()));
+		mav.addObject("tiposDeIngressos",TipoDeIngresso.values());
 		
 		return mav;
 	}

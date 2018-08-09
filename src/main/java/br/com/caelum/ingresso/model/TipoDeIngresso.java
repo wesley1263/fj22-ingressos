@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import br.com.caelum.ingresso.model.desconto.Desconto;
 import br.com.caelum.ingresso.model.desconto.DescontoEstudante;
 import br.com.caelum.ingresso.model.desconto.DescontoIdoso;
+import br.com.caelum.ingresso.model.desconto.DescontoMeia;
 import br.com.caelum.ingresso.model.desconto.SemDesconto;
 
 public enum TipoDeIngresso {
@@ -25,7 +26,7 @@ public enum TipoDeIngresso {
 	}
 	
 	public BigDecimal aplicarDesconto(BigDecimal valor){
-		return this.desconto.aplicarDesconto(valor);
+		return desconto.aplicarDesconto(valor);
 	}
 
 }
